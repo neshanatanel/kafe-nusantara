@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kafe Nusantara · Budaya & Rasa</title>
+    <!-- Font & Ikon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            background: #fef9f0;
+            color: #3e2e1f;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0.5rem 0 1.5rem 0;
+            border-bottom: 3px dashed #d9b382;
+        }
+
+        .brand h1 {
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: #7a4c2c;
+            letter-spacing: 1px;
+        }
+        .brand h1 i {
+            color: #c77d3d;
+            margin-right: 8px;
+        }
+        .brand span {
+            font-weight: 400;
+            font-size: 1rem;
+            background: #e7d6c0;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 4px;
+            color: #4f3622;
+        }
+
+        .cart-icon {
+            background: #7a4c2c;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: 0.2s;
+            border: none;
+        }
+        .cart-icon:hover {
+            background: #5f3a20;
+            transform: scale(1.02);
+        }
+        .cart-icon i {
+            font-size: 1.4rem;
+        }
+        .cart-count {
+            background: #f5c542;
+            color: #2d1d0f;
+            padding: 0.1rem 0.7rem;
+            border-radius: 40px;
+            font-weight: 700;
+        }
+
+        /* budaya section */
+        .culture-banner {
+            background: linear-gradient(145deg, #f5e5d3, #ecdac8);
+            margin: 2rem 0 2.5rem 0;
+            padding: 1.8rem 2rem;
+            border-radius: 60px 20px 60px 20px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            box-shadow: 0 6px 14px rgba(122, 76, 44, 0.08);
+        }
+        .culture-banner h2 {
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: #4a3221;
+        }
+        .culture-banner h2 i {
+            color: #b46f3a;
+            margin-right: 12px;
+        }
+        .culture-banner p {
+            font-size: 1.1rem;
+            background: #ffffffb3;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* menu grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 2rem 1.5rem;
+            margin: 2rem 0 3rem 0;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 32px 16px 32px 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -8px rgba(80, 50, 30, 0.12);
+            transition: 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0e2d2;
+        }
+        .menu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -10px #b48b6b40;
+        }
+
+        .menu-img {
+            height: 190px;
+            background: #dac9b7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.8rem;
+            color: #5d3f28;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+        /* fallback icon jika gambar tidak tampil */
+        .menu-img i {
+            background: rgba(255, 242, 230, 0.7);
+            padding: 0.6rem 1rem;
+            border-radius: 100px;
+            backdrop-filter: blur(2px);
+        }
+
+        .menu-info {
+            padding: 1.2rem 1.2rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-info h3 {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #3e2b1b;
+            margin-bottom: 4px;
+        }
+        .menu-desc {
+            font-size: 0.9rem;
+            color: #6f5542;
+            margin: 6px 0 12px 0;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .menu-desc i {
+            color: #b87a4b;
+            margin-right: 4px;
+        }
+        .price {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #7a4c2c;
+            margin: 6px 0 10px 0;
+        }
+        .price small {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: #9e7b61;
+            margin-left: 6px;
+        }
+        .btn-order {
+            background: #7a4c2c;
+            border: none;
+            color: white;
+            padding: 0.7rem 0.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: auto;
+            border: 1px solid #9f6e48;
+        }
+        .btn-order i {
+            font-size: 1rem;
+        }
+        .btn-order:hover {
+            background: #5f3a20;
+            border-color: #7a4c2c;
+        }
+        .btn-order:active {
+            transform: scale(0.95);
+        }
+
+        /* keranjang */
+        .cart-panel {
+            background: #fff8f0;
+            border-radius: 40px 40px 20px 20px;
+            padding: 1.8rem 2rem;
+            margin: 2.5rem 0 1rem 0;
+            box-shadow: 0 4px 20px rgba(90, 60, 30, 0.08);
+            border: 1px solid #ebdacb;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .cart-header h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #4f3622;
+        }
+        .cart-header h3 i {
+            color: #b46f3a;
+            margin-right: 10px;
+        }
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            min-height: 70px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fcf3e9;
+            padding: 0.7rem 1.5rem 0.7rem 1.2rem;
+            border-radius: 80px;
+            border-left: 6px solid #c2824b;
+        }
+        .cart-item span {
+            font-weight: 500;
+        }
+        .cart-item .item-name {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .cart-item .item-name i {
+            color: #9f6e48;
+            width: 24px;
+        }
+        .cart-item .item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cart-item .item-qty button {
+            background: #e7d6c0;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #3e2b1b;
+            transition: 0.1s;
+        }
+        .cart-item .item-qty button:hover {
+            background: #d4bb9f;
+        }
+        .cart-item .item-price {
+            font-weight: 700;
+            min-width: 70px;
+            text-align: right;
+        }
+        .cart-empty {
+            color: #a48269;
+            font-style: italic;
+            padding: 0.8rem 0;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 1.4rem;
+            font-weight: 700;
+            padding-top: 1.2rem;
+            border-top: 2px dashed #d9b382;
+            margin-top: 0.8rem;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .cart-total span:first-child {
+            font-weight: 400;
+            color: #4f3622;
+        }
+        .btn-checkout {
+            background: #b46f3a;
+            border: none;
+            color: white;
+            padding: 0.6rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-left: 10px;
+        }
+        .btn-checkout:hover {
+            background: #8f592b;
+        }
+        .btn-clear {
+            background: transparent;
+            border: 1px solid #c9b09b;
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #6f5542;
+            transition: 0.2s;
+        }
+        .btn-clear:hover {
+            background: #eadace;
+        }
+
+        footer {
+            text-align: center;
+            margin: 2rem 0 0.5rem;
+            color: #7f6753;
+            font-size: 0.95rem;
+            border-top: 1px solid #e2cfbc;
+            padding-top: 1.8rem;
+        }
+        footer i {
+            color: #b46f3a;
+        }
+
+        /* responsif */
+        @media (max-width: 700px) {
+            .culture-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .cart-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .cart-item {
+                flex-wrap: wrap;
+                gap: 6px;
+                border-radius: 30px;
+                padding: 0.8rem 1rem;
+            }
+            .btn-checkout {
+                width: 100%;
+                justify-content: center;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- header -->
+    <header class="header">
+        <div class="brand">
+            <h1><i class="fas fa-utensils"></i> Kafe Nusantara</h1>
+            <span><i class="fas fa-map-pin"></i> Rasa & Budaya Indonesia</span>
+        </div>
+        <button class="cart-icon" id="cartToggleBtn">
+            <i class="fas fa-shopping-bag"></i> Keranjang
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </header>
+
+    <!-- budaya banner -->
+    <div class="culture-banner">
+        <h2><i class="fas fa-palette"></i> Indonesia Culture</h2>
+        <p><i class="fas fa-drumstick-bite"></i>  Rempah · Tradisi · Nusantara</p>
+    </div>
+
+    <!-- menu grid -->
+    <div class="menu-grid" id="menuGrid"></div>
+
+    <!-- keranjang panel -->
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Keranjang Pesanan</h3>
+            <div>
+                <button class="btn-clear" id="clearCartBtn"><i class="fas fa-trash-alt"></i> Kosongkan</button>
+            </div>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">🛒 Keranjang masih kosong, pilih menu favoritmu!</div>
+        </div>
+        <div class="cart-total">
+            <span>Total</span>
+            <span id="cartTotalPrice">Rp 0</span>
+            <button class="btn-checkout" id="checkoutBtn"><i class="fas fa-check-circle"></i> Pesan Sekarang</button>
+        </div>
+    </div>
+
+    <footer>
+        <i class="fas fa-mosque"></i>   Kafe Nusantara · 2026 · Merangkai rasa, melestarikan budaya
+    </footer>
+</div>
+
+<script>
+    // ---------- DATA MENU (dengan gambar via emoji / ikon) ----------
+    const menuData = [
+        { id: 1, name: "Nasi Goreng Rempah", desc: "Nasi goreng khas dengan bumbu rempah & ayam suwir", price: 35000, image: "🍛", culture: "Jawa" },
+        { id: 2, name: "Sate Lilit Bali", desc: "Sate daging cincang dengan bumbu kelapa dan sambal matah", price: 42000, image: "🍢", culture: "Bali" },
+        { id: 3, name: "Rendang Padang", desc: "Daging sapi empuk dimasak dengan santan dan rempah khas", price: 49000, image: "🥩", culture: "Sumatra" },
+        { id: 4, name: "Gado-Gado", desc: "Sayuran rebus dengan bumbu kacang dan kerupuk", price: 28000, image: "🥗", culture: "Jakarta" },
+        { id: 5, name: "Pisang Goreng Madu", desc: "Pisang goreng crispy dengan taburan madu & keju", price: 18000, image: "🍌", culture: "Jawa" },
+        { id: 6, name: "Es Dawet Ayu", desc: "Minuman dawet dengan santan, gula aren, dan cincau", price: 22000, image: "🥤", culture: "Jawa Tengah" },
+        { id: 7, name: "Bakso Malang", desc: "Bakso sapi dengan mie, pangsit, dan kuah kaldu", price: 32000, image: "🍜", culture: "Jawa Timur" },
+        { id: 8, name: "Kopi Tubruk", desc: "Kopi hitam khas Jawa dengan ampas halus", price: 15000, image: "☕", culture: "Jawa" },
+        { id: 9, name: "Nasi Uduk Betawi", desc: "Nasi uduk dengan lauk semur jengkol, ayam, dan sambal", price: 38000, image: "🍚", culture: "Betawi" }
+    ];
+
+    // ---------- STATE ----------
+    let cart = []; // [{ id, name, price, quantity, image }]
+    const menuGrid = document.getElementById('menuGrid');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartTotalPriceEl = document.getElementById('cartTotalPrice');
+
+    // ---------- RENDER MENU ----------
+    function renderMenu() {
+        menuGrid.innerHTML = '';
+        menuData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+
+            // gambar (menggunakan emoji + background)
+            const imgDiv = document.createElement('div');
+            imgDiv.className = 'menu-img';
+            imgDiv.style.background = `linear-gradient(145deg, #f3e3d2, #e0ccb8)`;
+            imgDiv.innerHTML = `<i class="fas ${getIconFromEmoji(item.image)}" style="font-size:3.8rem; color:#5f3a20;"></i>`;
+            // kita simpan juga emoji sebagai fallback jika font awesome tidak support, tapi kita gunakan icon FA
+
+            const info = document.createElement('div');
+            info.className = 'menu-info';
+            info.innerHTML = `
+                <h3>${item.name}</h3>
+                <div class="menu-desc"><i class="fas fa-tag"></i> ${item.culture} · ${item.desc}</div>
+                <div class="price">Rp ${item.price.toLocaleString('id-ID')} <small>/porsi</small></div>
+                <button class="btn-order" data-id="${item.id}"><i class="fas fa-plus-circle"></i> Tambah ke keranjang</button>
+            `;
+
+            card.appendChild(imgDiv);
+            card.appendChild(info);
+            menuGrid.appendChild(card);
+        });
+
+        // event listener tombol tambah
+        document.querySelectorAll('.btn-order').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const id = parseInt(this.dataset.id);
+                const menu = menuData.find(m => m.id === id);
+                if (menu) addToCart(menu);
+            });
+        });
+    }
+
+    // helper konversi emoji ke icon FA (sederhana)
+    function getIconFromEmoji(emoji) {
+        const map = {
+            '🍛': 'fa-utensil-spoon',
+            '🍢': 'fa-skewer',
+            '🥩': 'fa-drumstick-bite',
+            '🥗': 'fa-leaf',
+            '🍌': 'fa-apple-alt',
+            '🥤': 'fa-glass-whiskey',
+            '🍜': 'fa-utensils',
+            '☕': 'fa-mug-hot',
+            '🍚': 'fa-bowl-rice'
+        };
+        return map[emoji] || 'fa-utensils';
+    }
+
+    // ---------- CART LOGIC ----------
+    function addToCart(menu) {
+        const existing = cart.find(item => item.id === menu.id);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ ...menu, quantity: 1 });
+        }
+        updateCartUI();
+    }
+
+    function removeFromCart(id) {
+        const idx = cart.findIndex(item => item.id === id);
+        if (idx !== -1) {
+            if (cart[idx].quantity > 1) {
+                cart[idx].quantity -= 1;
+            } else {
+                cart.splice(idx, 1);
+            }
+        }
+        updateCartUI();
+    }
+
+    function clearCart() {
+        cart = [];
+        updateCartUI();
+    }
+
+    function getTotalItems() {
+        return cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function getTotalPrice() {
+        return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    }
+
+    function updateCartUI() {
+        // total item di icon
+        const totalItems = getTotalItems();
+        cartCountEl.textContent = totalItems;
+
+        // render daftar cart
+        cartItemsEl.innerHTML = '';
+        if (cart.length === 0) {
+            cartItemsEl.innerHTML = `<div class="cart-empty">🛒 Keranjang masih kosong, pilih menu favoritmu!</div>`;
+        } else {
+            cart.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div class="item-name">
+                        <i class="fas ${getIconFromEmoji(item.image)}"></i>
+                        <span>${item.name}</span>
+                    </div>
+                    <div class="item-qty">
+                        <button data-id="${item.id}" class="qty-minus">−</button>
+                        <span>${item.quantity}</span>
+                        <button data-id="${item.id}" class="qty-plus">+</button>
+                    </div>
+                    <div class="item-price">Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</div>
+                `;
+                cartItemsEl.appendChild(div);
+            });
+
+            // event qty
+            document.querySelectorAll('.qty-minus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    removeFromCart(id);
+                });
+            });
+            document.querySelectorAll('.qty-plus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    const menu = menuData.find(m => m.id === id);
+                    if (menu) addToCart(menu);
+                });
+            });
+        }
+
+        // total harga
+        cartTotalPriceEl.textContent = `Rp ${getTotalPrice().toLocaleString('id-ID')}`;
+    }
+
+    // ---------- EVENT ----------
+    // clear cart
+    document.getElementById('clearCartBtn').addEventListener('click', clearCart);
+
+    // checkout (pesan)
+    document.getElementById('checkoutBtn').addEventListener('click', function() {
+        if (cart.length === 0) {
+            alert('Keranjang kosong, tambahkan menu dulu ya!');
+            return;
+        }
+        const total = getTotalPrice();
+        const itemNames = cart.map(i => `${i.name} (${i.quantity})`).join(', ');
+        alert(`✅ Pesanan berhasil!\nMenu: ${itemNames}\nTotal: Rp ${total.toLocaleString('id-ID')}\nTerima kasih, selamat menikmati! 🙏`);
+        clearCart();
+    });
+
+    // toggle panel cart (hanya efek visual)
+    document.getElementById('cartToggleBtn').addEventListener('click', function() {
+        const panel = document.getElementById('cartPanel');
+        if (panel.style.display === 'none') {
+            panel.style.display = 'block';
+        } else {
+            panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+        }
+    });
+    // biar tampil awal
+    document.getElementById('cartPanel').style.display = 'block';
+
+    // inisialisasi
+    renderMenu();
+    updateCartUI();
+</script>
+</body>
+</html>
